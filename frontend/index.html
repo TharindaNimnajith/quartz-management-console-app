@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Calendar Scheduler</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <style>
+        .input-group {
+            margin-bottom: 5px;
+        }
+
+        .title {
+            text-align: center;
+            font-size: 30px;
+            margin-top: 15px;
+        }
+
+        .btnCreate {
+            text-align: right;
+            margin: 5px 15px;
+        }
+
+        .head {
+            border: 1px solid #8080805c;
+        }
+
+        .line {
+            border: 0;
+            height: 1px;
+            background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.23), rgba(0, 0, 0, 0));
+        }
+
+        .modal-dialog {
+            width: 80%;
+            max-width: 1200px;
+        }
+    </style>
+</head>
+<body style="background-color:rgb(225, 245, 192);">
+    <div class="container-fluid" style="padding-top: 15px;">
+        <div class="head">
+            <div class="title">CALENDAR MANAGEMENT CONSOLE</div>
+            <hr class="line">
+            <div class="btnCreate">
+                <button type="button" class="btn btn-primary" id="createBtn" data-toggle="modal">Create</button>
+            </div>
+        </div>
+        <table class="table table-bordered">
+            <thead>
+                <tr class="active">
+                    <th>Job Id</th>
+                    <th>Job Name</th>
+                    <th>Job Group</th>
+                    <th>Cron Expression</th>
+                    <th>Job Status</th>
+                    <th>Job Description</th>
+                    <th style="text-align: center;">Action</th>
+                </tr>
+            </thead>
+            <tbody id="jobTableBody">
+            </tbody>
+        </table>
+    </div>
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h4 class="modal-title" id="myModalLabel">Create Job</h4>
+                </div>
+                <div class="modal-body">
+                    <form id="mainForm" action="">
+                        <div>
+                            <input type="hidden" class="form-control" id="jobId" name="jobId"/>
+                            <div class="input-group">
+                                <span class="input-group-addon">Job Name</span>
+                                <label for="edit_name"></label><input type="text" name="jobName" class="form-control" id="edit_name"/>
+                            </div>
+                            <div class="input-group">
+                                <span class="input-group-addon">Job Group</span>
+                                <label for="edit_group"></label><input type="text" name="jobGroup" class="form-control" id="edit_group"/>
+                            </div>
+                            <div class="input-group">
+                                <span class="input-group-addon">Cron Expression</span>
+                                <label for="edit_cron"></label><input type="text" name="cronExpression" class="form-control" id="edit_cron"/>
+                            </div>
+                            <div class="input-group">
+                                <span class="input-group-addon">Job Description</span>
+                                <label for="edit_desc"></label><input type="text" name="jobDescription" class="form-control" id="edit_desc"/>
+                            </div>
+                            <div class="table-responsive">
+                                <table id="jobCalendarTable" class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Calendar Name</th>
+                                            <th>Calendar Type</th>
+                                            <th>Value</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                                </table>
+                                <button type="button" id="addRow" class="btn btn-secondary">Add Calendar</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary" id="save">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap-select.min.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
+</body>
+</html>

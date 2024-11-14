@@ -1,0 +1,22 @@
+spring:
+  application:
+    name: quartz-management-console
+
+  sql:
+    init:
+      platform: postgres
+      mode: always
+      schema-locations: classpath:db/quartz_tables_postgres.sql
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+
+server:
+  port: 8080
+
+logging:
+  level:
+    org:
+      hibernate:
+        SQL: debug

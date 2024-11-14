@@ -1,0 +1,39 @@
+services:
+  postgres:
+    image: postgres:latest
+    container_name: postgres_db
+    environment:
+      POSTGRES_DB: mydatabase
+      POSTGRES_USER: myuser
+      POSTGRES_PASSWORD: mypassword
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - springboot-postgres-network
+
+  spring-boot-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: quartz-management-console:latest
+    container_name: quartz-management-console
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres_db:5432/mydatabase
+      SPRING_DATASOURCE_USERNAME: myuser
+      SPRING_DATASOURCE_PASSWORD: mypassword
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgres
+    networks:
+      - springboot-postgres-network
+
+networks:
+  springboot-postgres-network:
+
+volumes:
+  postgres_data:
